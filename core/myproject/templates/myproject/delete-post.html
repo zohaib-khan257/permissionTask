@@ -1,0 +1,14 @@
+{% extends "myproject/base.html" %}
+
+{% block title %}Update Post{% endblock  %}
+
+{% block content %}
+    <h4>Are you sure you want to delete this book?</h4> 
+    <h2>{{ models.name }}</h2>
+    
+     <form method="post" action="{% url 'delete-post' models.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+         <a href="{% url 'list' %}">Cancel</a>
+    </form>
+{% endblock  %}

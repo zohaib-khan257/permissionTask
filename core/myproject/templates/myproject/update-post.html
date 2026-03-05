@@ -1,0 +1,13 @@
+{% extends "myproject/base.html" %}
+
+{% block title %}Update Post{% endblock  %}
+
+{% block content %}
+<form method="post" action="{% url 'update-post' models.id %}">
+    {% csrf_token %}
+    {{ model_form.as_p }}
+    <button type="submit">Update</button>
+</form>
+
+ <a href="{% url 'list' %}"><button type="submit">Back to Home page</button></a>
+{% endblock  %}

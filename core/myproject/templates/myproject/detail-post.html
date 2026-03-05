@@ -1,0 +1,18 @@
+{% extends "myproject/base.html" %}
+
+{% block title %}{{ models.title }}{% endblock %}
+
+{% block content %}
+
+<h1>Post Name : {{ models.title }}</h1>
+<p>Created By : {{ models.created_by }}</p>
+<p>Post Caption : {{ models.captions }}</p>
+
+{% if models.image %}
+    <p>Image : <img src="{{ models.image.url }}" 
+         alt="{{ models.title }}" 
+         style="max-width:10%; height:auto;"></p>
+{% endif %}
+
+
+{% endblock %}

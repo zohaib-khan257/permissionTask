@@ -1,0 +1,22 @@
+{% extends "myproject/base.html" %}
+
+{% block title %}All Posts{% endblock  %}
+
+{% block content %}
+
+
+
+    <h1>All Posts</h1>
+
+    <ul>
+
+    {% for model in post_model %} 
+        <h3><li>{{ model.title }} 
+            {% comment %} <img src={{model.image.url}} alt={{model.title}}/> {% endcomment %}
+            <a href="{% url 'detail-post' model.id %}"><button>View</button></a>
+            <a href="{% url 'update-post' model.id %}"><button>Update</button></a>
+            <a href="{% url 'delete-post' model.id %}"><button>Delete</button></a>
+        </li></h3>
+    {% endfor %} 
+</ul>
+{% endblock %}

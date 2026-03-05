@@ -1,0 +1,12 @@
+{% extends "myproject/base.html" %}
+
+{% block title %}Create Post{% endblock  %}
+
+{% block content %}
+<form method="post" action={% url "create-post" %} enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ model_form.as_p }}
+    <button type="submit">Save</button>
+</form>   
+ <a href="{% url 'list' %}"><button type="submit">Back to Home page</button></a>
+{% endblock  %}

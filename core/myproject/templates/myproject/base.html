@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block  title %}Document{% endblock  %}</title>
+</head>
+<body>
+
+<header style="background:#228; padding:15px;">
+    <nav style="display:flex; justify-content:space-between; align-items:center;">
+
+        <!-- Left Side -->
+        <div>
+            <a href="{% url 'list' %}" style="color:white; margin-right:15px;"><button>Home</button></a>
+            <a href="{% url 'create-post' %}" style="color:white;"><button>Create Post</button></a>
+        </div>
+
+        <!-- Right Side -->
+        <div>
+            {% if user.is_authenticated %}
+                <span style="color:white; margin-right:10px;">
+                    Welcome, {{ user.username }}
+                </span>
+                
+                <form method="post" action="{% url 'logout' %}">
+                     {% csrf_token %}
+                     <button type="submit">Logout</button>
+                 </form>
+                </form> 
+            {% else %}
+              <a href="{% url 'login' %}" style="color:white; margin-right:15px;"><button>Login</button></a> 
+                <a href="{% url 'signup' %}" style="color:lightgreen;"><button>Signup</button></a> 
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
+
+    {% block content %}
+    {% endblock  %}
+</body>
+</html>
