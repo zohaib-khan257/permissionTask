@@ -54,10 +54,10 @@ class DetailPost(View):
             "models":post_model,
         })   
             
-class UpdatePost(View):
+class UpdatePost(LoginRequiredMixin,View):
     def get(self,request,id)     :
         post_model=Post.objects.get(pk=id)
-        if not request.user.is_authenticated and post_model.created_by != request.user:
+        if  post_model.created_by != request.user:
             raise PermissionDenied
             
         model_form=PostForm(instance=post_model)
@@ -69,7 +69,7 @@ class UpdatePost(View):
     def post(self,request,id):
         post_model=Post.objects.get(pk=id)
         
-        if not request.user.is_authenticated and post_model.created_by != request.user:
+        if  post_model.created_by != request.user:
             raise PermissionDenied       
         
         model_form=PostForm(request.POST,instance=post_model)
